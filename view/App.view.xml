@@ -1,0 +1,86 @@
+<mvc:View
+	controllerName="cvui5.controller.App"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.uxap"
+	xmlns:m="sap.m"
+	xmlns:layout="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form"
+	displayBlock="true">
+	
+	<ObjectPageLayout
+		id="ObjectPageLayout"
+		showTitleInHeaderContent="true"
+		headerTitle="{= 'Lebenslauf - ' + ${/name} }">
+		
+		<headerTitle>
+			<ObjectPageDynamicHeaderTitle>
+			<content>
+				<layout:VerticalLayout>
+					<m:Title text="{/name}" level="H1" />
+					<m:Text text="{/contact/email}" />
+					<m:Text text="{/contact/phone}" />
+					<m:Text text="{/contact/address}" />
+				</layout:VerticalLayout>
+			</content>
+			</ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+
+		<!-- Profil -->
+		<sections>
+			<ObjectPageSection title="Profil">
+			<ObjectPageSubSection>
+				<m:Text text="{/profile}" />
+			</ObjectPageSubSection>
+			</ObjectPageSection>
+
+			<!-- Berufserfahrung -->
+			<ObjectPageSection title="Berufserfahrung">
+			<ObjectPageSubSection>
+				<m:List items="{/experience}">
+					<m:StandardListItem title="{position}" description="{company} ({dates})" />
+				</m:List>
+			</ObjectPageSubSection>
+			</ObjectPageSection>
+
+			<!-- Bildungsweg -->
+			<ObjectPageSection title="Bildungsweg">
+			<ObjectPageSubSection>
+				<m:List items="{/education}">
+					<m:StandardListItem title="{degree}" description="{institution} ({dates})" />
+				</m:List>
+			</ObjectPageSubSection>
+			</ObjectPageSection>
+
+			<!-- Leistungen -->
+			<ObjectPageSection title="Leistungen">
+			<ObjectPageSubSection>
+				<m:List items="{/achievements}">
+					<m:StandardListItem title="{title}" description="{date}" />
+				</m:List>
+			</ObjectPageSubSection>
+			</ObjectPageSection>
+
+			<!-- Weitere Kenntnisse -->
+			<ObjectPageSection title="Weitere Kenntnisse">
+			<ObjectPageSubSection title="Sprachen">
+				<m:List items="{/languages}">
+					<m:StandardListItem title="{language}" description="{level}" />
+				</m:List>
+			</ObjectPageSubSection>
+			<ObjectPageSubSection title="Programmiersprachen">
+				<m:Text text="{/skills}" />
+			</ObjectPageSubSection>
+			</ObjectPageSection>
+
+			<!-- Soziales Engagement -->
+			<ObjectPageSection title="Soziales Engagement">
+			<ObjectPageSubSection>
+				<m:List items="{/social}">
+					<m:StandardListItem title="{role}" description="{place}" />
+				</m:List>
+			</ObjectPageSubSection>
+			</ObjectPageSection>
+		</sections>
+
+	</ObjectPageLayout>
+</mvc:View>
